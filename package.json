@@ -1,0 +1,19 @@
+{
+  "name": "gadispatcher",
+  "version": "1.0.0",
+  "description": "Simplified API for dispatching requests to Google Analytics",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ga",
+    "google",
+    "analytics"
+  ],
+  "author": "@doot0",
+  "license": "MIT",
+  "dependencies": {
+    "universal-analytics": "^0.4.8"
+  }
+}
