@@ -1,0 +1,46 @@
+---
+
+builds:
+  docker_image_name: FreeLunchCI/example-web-app
+
+services:
+  db:
+  image: postgres:9.4.1
+  ports:
+    - "5432:5432"
+web:
+  build: .
+  command: python -u run.py
+  ports:
+    - "5000:5000"
+links:
+  - db
+volumes:
+  - .:/myapp
+
+outputs:
+
+  - type: ecr
+    image: FreeLunchCI/example-web-app
+    registry: 703587889398.dkr.ecr.us-east-1.amazonaws.com
+    repository: example-web-app
+
+  - type: kube
+    # currently there are two options for defining your kube auth info; config and manual:
+    #  - config: set the kube_config_path to the location of your config info
+    #  - manual: set the server, user, token, and client_certificate manually
+    #    - server: the kubernetes server to deploy to (~/.kube/config path: /clusters/cluster/server)
+    #    - user: the kubernetes username (~/.kube/config path: /contexts/context/user)
+    #    - token: the kubernetes token (~/.kube/config path: users/user/token)
+    #    - client_certificate: the kubernetes client certificate (~/.kube/config path: users/user/client-key-data)
+    server: https://50.16.94.175
+    user: aws_kubernetes
+    #token: this value is stored/retrieved from the "secure store"
+    #client_certificate: this value is stored/retrieved from the "secure store"
+
+    #kube_config_path: ~/.kube/config   #used for config based auth.
+    kube_selector: app=example-web-app
+    kube_deploy_registry: 703587889398.dkr.ecr.us-east-1.amazonaws.com   # this should match the registry you deploy your image to (e.g. ecr.registry)
+    kube_deploy_repository: example-web-app   # this should match the repository within the registry that you deploy your image to (e.g. ecr.repository)
+    kube_rc_path: k8s/example-web-app-rc.yml
+    kube_dir: k8s
