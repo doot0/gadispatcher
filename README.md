@@ -1,14 +1,17 @@
 ## gadispatcher [![npm](https://img.shields.io/npm/v/gadispatcher.svg)]()
 
 GADispatcher is a highly simplified API for sending any type of event to
-Google Analytics. (WIP: Any requests made with this library that fail are
+Google Analytics. The intended usage was originally for applications built with [Electron](https://github.com/electron/electron), but you can use this in any
+Node.js codebase if you so desire.
+
+(WIP: Any requests made with this library that fail are
 gracefully queued in the background to resend later.)
 
 :warning: There are currently no tests for this library. :warning:
 
 ### Usage
 
-##### API
+#### API
 ###### GADispatcher(trackingId, [identifier], [options])
 Calling `new GADispatcher()` instantiates the GADispatcher instance.
 
@@ -20,7 +23,7 @@ Calling `new GADispatcher()` instantiates the GADispatcher instance.
 - `eventType` - Kind of event to send. Currently available events are `pageview`, `event`, `transaction`, `exception` and `timing`.
 - `[metadata]` - Optional metadata as an object. [`universal-analytics` documentation](https://github.com/peaksandpies/universal-analytics/blob/master/AcceptableParams.md) for available options.
 
-##### Example
+##### Examples
 If you prefer examples, I got you.
 
 ###### Instantiating an instance:
