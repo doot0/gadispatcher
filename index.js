@@ -16,8 +16,8 @@ class GADispatcher {
     const opts = options ? options : {};
 
     // Check for old UUID and assign it
-    if (localStorage.kapUUID) {
-      opts.uuid = localStorage.kapUUID;
+    if (localStorage.dispatcherUUID) {
+      opts.uuid = localStorage.dispatcherUUID;
     }
 
     // Enable https by default
@@ -34,7 +34,7 @@ class GADispatcher {
     // Store the current user's UUID in localStorage if
     // the ua object was assigned properly.
     if (this.session.cid) {
-      this.session.cid = localStorage.kapUUID;
+      this.session.cid = localStorage.dispatcherUUID;
     }
 
     console.log('GADispatcher started.', this.session);
